@@ -1,0 +1,156 @@
+.scrollerContainer {
+    width: 100%;
+    overflow: hidden;
+    /* padding: 10px 0; */
+    background: rgba(0, 0, 0, 0.02);
+    position: relative;
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+}
+
+.row {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+/* Black opacity layer */
+.row::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(12, 12, 12, 0.6);
+    z-index: 5;
+    pointer-events: none;
+}
+
+.scrollerGroup {
+    display: flex;
+    gap: 20px;
+    padding: 10px 0;
+    width: fit-content;
+    position: relative;
+}
+
+.imageWrapper {
+    flex-shrink: 0;
+    position: relative;
+}
+
+.image {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.image:hover {
+    transform: scale(1.05);
+}
+
+/* Overlay Text Styles */
+.overlayText {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 10;
+    padding: 1rem 1rem;
+    
+}
+
+.overlayText h2 {
+    font-size: 10rem;
+    font-weight: bold;
+    color: white;
+    /* margin-bottom: 0.5rem; */
+    background: linear-gradient(to right, #fff, #a8b2d1);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1;
+    letter-spacing: 0.09em;
+    font-family: var(--font-gloock);
+}
+
+.overlayText p {
+    font-size: 1.25rem;
+    color: #a8b2d1;
+}
+
+.rightToLeft {
+    animation: scrollRightToLeft 50s linear infinite;
+}
+
+.leftToRight {
+    animation: scrollLeftToRight 50s linear infinite;
+}
+
+@keyframes scrollRightToLeft {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+@keyframes scrollLeftToRight {
+    from {
+        transform: translateX(-50%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .image {
+        width: 200px;
+        height: 200px;
+    }
+    
+    .overlayText {
+        padding: 1.5rem 2rem;
+    }
+    
+    .overlayText h2 {
+        font-size: 2rem;
+    }
+    
+    .overlayText p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .image {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .scrollerGroup {
+        gap: 10px;
+    }
+    
+    .overlayText {
+        padding: 1rem 1.5rem;
+    }
+    
+    .overlayText h2 {
+        font-size: 1.5rem;
+    }
+    
+    .overlayText p {
+        font-size: 0.875rem;
+    }
+} 
